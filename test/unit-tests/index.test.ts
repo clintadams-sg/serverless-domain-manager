@@ -2109,7 +2109,7 @@ describe("Custom Domain Plugin", () => {
             expect(spy).to.have.been.called.with(expectedParams);
         });
 
-        it("Should exclude weight, region, and set identifier input with simple routing", async () => {
+        it("Should exclude weight, region, set identifier, and health input with simple routing", async () => {
             AWS.mock("Route53", "listHostedZones", (params, callback) => {
                 callback(null, {
                     HostedZones: [{
