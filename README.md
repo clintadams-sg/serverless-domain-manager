@@ -120,6 +120,22 @@ custom:
         endpointType: 'regional'
 ```
 
+For multi-region deployments, a `route53Params` structure can be used to support latency or weighted routing policies
+
+```yaml
+custom:
+  customDomain:
+    domainName: serverless.foo.com
+    stage: ci
+    basePath: api
+    certificateName: '*.foo.com'
+    createRoute53Record: true
+    endpointType: 'regional'
+    securityPolicy: tls_1_2
+    route53Params:
+      routingPolicy: latency
+```
+
 | Parameter Name | Default Value | Description |
 | --- | --- | --- |
 | domainName _(Required)_ | | The domain name to be created in API Gateway and Route53 (if enabled) for this API. |
@@ -213,6 +229,7 @@ https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional
 6) Remove the `allowPathMatching` option, it should only be used once when migrating a base path from one API type to another.
 
 NOTE: Always test this process in a lower level staging or development environment before performing it in production.
+
 
 
 # Known Issues
